@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { useDrag } from "react-dnd";
 
-import styles from "@/styles/DraggableBlock.module.css";
+import styles from "@/styles/Block.module.css";
 
 type BlockProps = {
   type: string;
