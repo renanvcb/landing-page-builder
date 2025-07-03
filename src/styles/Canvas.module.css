@@ -1,0 +1,6 @@
+.canvas {
+  flex: 1;
+  padding: 2rem;
+  background-color: #ffffff;
+  overflow-y: auto;
+}
