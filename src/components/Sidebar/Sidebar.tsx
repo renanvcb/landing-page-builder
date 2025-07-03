@@ -5,7 +5,7 @@ import { DraggableBlock } from "@/components/blocks/DraggableBlock";
 
 const COMPONENTS = ["Heading", "Paragraph", "Image", "Button"];
 
-export default function Sidebar() {
+export function Sidebar() {
   return (
     <div className={styles.sidebar}>
       <h2 className={styles.title}>Components</h2>
