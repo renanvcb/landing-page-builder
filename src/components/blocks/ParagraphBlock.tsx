@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "./Block.module.css";
+import styles from "@/styles/Block.module.css";
 
 export function ParagraphBlock() {
   return (
