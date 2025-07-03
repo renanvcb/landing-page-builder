@@ -4,3 +4,23 @@
   background-color: #ffffff;
   overflow-y: auto;
 }
+
+.blockWrapper {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.removeBtn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  font-weight: bold;
+  line-height: 1;
+}
