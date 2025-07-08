@@ -8,7 +8,7 @@ export function ImageBlock() {
   return (
     <Image
       className={styles.image}
-      src="https://placehold.co/300x150"
+      src="https://picsum.photos/300/150"
       alt="Placeholder"
       width={300}
       height={150}

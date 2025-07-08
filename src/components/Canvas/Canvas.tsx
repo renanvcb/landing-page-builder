@@ -26,7 +26,7 @@ export function Canvas() {
       const defaultContentMap: Record<string, string> = {
         Heading: "Editable Heading",
         Paragraph: "Editable paragraph text...",
-        Image: "https://placehold.co/300x150",
+        Image: "https://picsum.photos/300/150",
         Button: "Click Me",
       };
 
@@ -130,13 +130,8 @@ export function Canvas() {
                   src={component.content || ""}
                   alt="User image"
                   className={blockStyles.image}
-                  // sizes="(max-width: 500px) 100vw, 500px"
                   width={500}
                   height={300}
-                  // style={{
-                  //   objectFit: "cover",
-                  // }}
-                  // fill
                 />
                 <button
                   onClick={removeComponent}
