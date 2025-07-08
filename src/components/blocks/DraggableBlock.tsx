@@ -19,7 +19,7 @@ export function DraggableBlock({ type }: BlockProps) {
     }),
   });
 
-  drag(ref); // conecta o ref ao react-dnd
+  drag(ref); // connects ref to react-dnd
 
   return (
     <div
