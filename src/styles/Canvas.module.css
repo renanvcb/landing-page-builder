@@ -24,3 +24,9 @@
   font-weight: bold;
   line-height: 1;
 }
+
+@media (max-width: 768px) {
+  .canvas {
+    padding: 1rem;
+  }
+}

@@ -1,5 +1,12 @@
 .container {
   display: flex;
-  height: 100vh;
+  flex-direction: row;
+  height: 100dvh;
   width: 100vw;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
 }

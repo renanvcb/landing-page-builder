@@ -5,6 +5,7 @@
   cursor: grab;
   border-radius: 4px;
   text-align: center;
+  min-width: 200px;
 }
 
 .block:hover {
