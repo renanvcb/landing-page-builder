@@ -11,18 +11,17 @@
 }
 
 .removeBtn {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  background: #ff4d4d;
-  color: white;
+  margin-left: auto;
+  background: transparent;
   border: none;
-  border-radius: 50%;
-  width: 22px;
-  height: 22px;
+  font-size: 1.2rem;
+  color: #999;
   cursor: pointer;
-  font-weight: bold;
-  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.removeBtn:hover {
+  color: #ff4d4f;
 }
 
 .dragHandle {
