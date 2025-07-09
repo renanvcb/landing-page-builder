@@ -106,6 +106,7 @@ export function CanvasBlock({
             className={blockStyles.image}
             width={500}
             height={300}
+            priority
           />
         </div>
       )}
