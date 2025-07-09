@@ -103,9 +103,11 @@ export function Canvas() {
 
   return (
     <div className={canvasStyles.container}>
-      <div
+      <section
         ref={ref}
         className={canvasStyles.canvas}
+        role="application"
+        aria-label="Canvas area for building landing page"
         style={{ backgroundColor: isOver ? "#f0f8ff" : "white" }}
         onClick={() => setSelectedId(null)}
       >
@@ -121,7 +123,7 @@ export function Canvas() {
             onSelect={() => setSelectedId(component.id)}
           />
         ))}
-      </div>
+      </section>
 
       {selectedComponent && (
         <PropertiesPanel

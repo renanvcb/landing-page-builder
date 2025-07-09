@@ -20,8 +20,27 @@ img {
   height: auto;
 }
 
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
 /* Ensure responsive images and prevent horizontal scroll */
 .next-image {
   max-width: 100% !important;
   height: auto !important;
+}
+
+/* Screen reader only utility class */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

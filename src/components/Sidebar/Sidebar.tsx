@@ -7,11 +7,15 @@ const COMPONENTS = ["Heading", "Paragraph", "Image", "Button"];
 
 export function Sidebar() {
   return (
-    <div className={styles.sidebar}>
+    <nav
+      className={styles.sidebar}
+      role="complementary"
+      aria-label="Component library"
+    >
       <h2 className={styles.title}>Components</h2>
       {COMPONENTS.map((type) => (
         <DraggableBlock key={type} type={type} />
       ))}
-    </div>
+    </nav>
   );
 }
