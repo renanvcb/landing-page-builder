@@ -67,9 +67,13 @@ export function CanvasBlock({
       className={canvasStyles.blockWrapper}
       style={{
         opacity: isDragging ? 0.5 : 1,
+        display: "flex",
+        alignItems: "flex-start",
+        gap: "0.5rem",
         cursor: "move",
       }}
     >
+      <span className={canvasStyles.dragHandle}>⋮⋮</span>
       {component.type === "Heading" && (
         <EditableText
           as="h1"
@@ -92,7 +96,7 @@ export function CanvasBlock({
         />
       )}
       {component.type === "Image" && (
-        <>
+        <div>
           <input
             type="text"
             value={component.content}
@@ -108,7 +112,7 @@ export function CanvasBlock({
             height={300}
             priority
           />
-        </>
+        </div>
       )}
 
       <button
