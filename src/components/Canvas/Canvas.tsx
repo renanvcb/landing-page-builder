@@ -90,7 +90,7 @@ export function Canvas() {
   };
 
   return (
-    <div style={{ display: "flex" }}>
+    <div className={canvasStyles.container}>
       <div
         ref={ref}
         className={canvasStyles.canvas}
