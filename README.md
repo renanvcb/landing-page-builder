@@ -4,7 +4,7 @@ A visual drag-and-drop landing page builder built with **Next.js 15**, **React 1
 
 ## 🚀 Repository
 
-[https://github.com/peak-one/frontend-test-dlpb.git](https://github.com/peak-one/frontend-test-dlpb.git)
+[https://github.com/renanvcb/landing-page-builder.git](https://github.com/renanvcb/landing-page-builder.git)
 
 ## ✨ Features
 
@@ -111,7 +111,7 @@ landing-page-builder/
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/peak-one/frontend-test-dlpb.git
+   git clone https://github.com/renanvcb/landing-page-builder.git
    cd landing-page-builder
    ```
 
@@ -212,4 +212,4 @@ This project is part of a frontend development test and is for demonstration pur
 
 ---
 
-Built with ❤️ using Next.js and React
+Built by [Renan Borges](https://github.com/renanvcb) with ❤️ using Next.js and React
