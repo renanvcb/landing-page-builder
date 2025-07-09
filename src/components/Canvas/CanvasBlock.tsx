@@ -107,6 +107,7 @@ export function CanvasBlock({
             width={500}
             height={300}
             priority
+            style={{ width: "100%", height: "auto" }} // Ensures responsive image
           />
         </div>
       )}
