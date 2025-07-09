@@ -41,15 +41,16 @@ export function CanvasBlock({
   });
 
   // DROP
-  const [, drop] = useDrop({
+  const [{ isOver }, drop] = useDrop({
     accept: "canvas-block",
-    hover(item: { index: number }) {
-      if (!ref.current) return;
-      if (item.index === index) return;
-
+    hover(item: Props) {
+      if (!ref.current || item.index === index) return;
       moveBlock(item.index, index);
-      item.index = index; // updates index in the moving object
+      item.index = index;
     },
+    collect: (monitor) => ({
+      isOver: monitor.isOver(),
+    }),
   });
 
   // Connect drag and drop to the DOM
@@ -67,6 +68,8 @@ export function CanvasBlock({
       className={canvasStyles.blockWrapper}
       style={{
         opacity: isDragging ? 0.5 : 1,
+        backgroundColor: isOver ? "#f0f8ff" : "transparent",
+        transition: "background-color 0.2s ease",
         display: "flex",
         alignItems: "flex-start",
         gap: "0.5rem",
