@@ -23,12 +23,17 @@
   margin-bottom: 1rem;
 }
 
+.imageContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
 .image {
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
   height: auto;
   margin-bottom: 1rem;
-  border: 1px solid #ccc;
   border-radius: 4px;
 }
 

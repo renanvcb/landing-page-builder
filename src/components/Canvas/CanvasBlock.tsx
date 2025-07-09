@@ -70,15 +70,11 @@ export function CanvasBlock({
     <div
       ref={ref}
       onClick={onSelect}
-      className={canvasStyles.blockWrapper}
-      style={{
-        opacity: isDragging ? 0.5 : 1,
-        backgroundColor: selected
-          ? "#e6f7ff" // highlight active block
-          : isOver
-          ? "#f0f8ff"
-          : "transparent",
-      }}
+      className={`${canvasStyles.blockWrapper} ${
+        selected && canvasStyles.selected
+      } ${isOver && canvasStyles.hoverTarget} ${
+        isDragging && canvasStyles.dragging
+      }`}
     >
       <span className={canvasStyles.dragHandle}>⋮⋮</span>
       {component.type === "Heading" && (
@@ -103,7 +99,7 @@ export function CanvasBlock({
         />
       )}
       {component.type === "Image" && (
-        <div>
+        <div className={blockStyles.imageContainer}>
           <input
             type="text"
             value={component.content}
@@ -115,9 +111,10 @@ export function CanvasBlock({
             src={component.content || ""}
             alt="User image"
             className={blockStyles.image}
-            width={500}
+            width={600}
             height={300}
             priority
+            objectFit="contain"
           />
         </div>
       )}
