@@ -2,14 +2,19 @@
 
 import styles from "@/styles/PropertiesPanel.module.css";
 
-type Props = {
+type PanelProps = {
   type: string;
   content: string;
   update: (value: string) => void;
   onClose: () => void;
 };
 
-export function PropertiesPanel({ type, content, update, onClose }: Props) {
+export function PropertiesPanel({
+  type,
+  content,
+  update,
+  onClose,
+}: PanelProps) {
   return (
     <div className={styles.panel}>
       <div className={styles.panelHeader}>
