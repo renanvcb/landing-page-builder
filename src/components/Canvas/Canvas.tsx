@@ -4,7 +4,9 @@ import { useDrop } from "react-dnd";
 import { useRef, useState, useEffect } from "react";
 
 import canvasStyles from "@/styles/Canvas.module.css";
+
 import { CanvasBlock } from "./CanvasBlock";
+import { PropertiesPanel } from "../PropertiesPanel";
 
 type DroppedComponent = {
   id: string;
@@ -17,6 +19,8 @@ let idCounter = 0;
 export function Canvas() {
   const [components, setComponents] = useState<DroppedComponent[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  const selectedComponent = components.find((c) => c.id === selectedId);
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -86,23 +90,33 @@ export function Canvas() {
   };
 
   return (
-    <div
-      ref={ref}
-      className={canvasStyles.canvas}
-      style={{ backgroundColor: isOver ? "#f0f8ff" : "white" }}
-    >
-      {components.map((component, index) => (
-        <CanvasBlock
-          key={component.id}
-          index={index}
-          component={component}
-          moveBlock={moveBlock}
-          updateContent={updateContent}
-          removeComponent={removeComponent}
-          selected={selectedId === component.id}
-          onSelect={() => setSelectedId(component.id)}
+    <div style={{ display: "flex" }}>
+      <div
+        ref={ref}
+        className={canvasStyles.canvas}
+        style={{ backgroundColor: isOver ? "#f0f8ff" : "white" }}
+      >
+        {components.map((component, index) => (
+          <CanvasBlock
+            key={component.id}
+            index={index}
+            component={component}
+            moveBlock={moveBlock}
+            updateContent={(val) => updateContent(val, component.id)}
+            removeComponent={(id) => removeComponent(id)}
+            selected={selectedId === component.id}
+            onSelect={() => setSelectedId(component.id)}
+          />
+        ))}
+      </div>
+
+      {selectedComponent && (
+        <PropertiesPanel
+          type={selectedComponent.type}
+          content={selectedComponent.content || ""}
+          update={(val) => updateContent(val, selectedComponent.id)}
         />
-      ))}
+      )}
     </div>
   );
 }

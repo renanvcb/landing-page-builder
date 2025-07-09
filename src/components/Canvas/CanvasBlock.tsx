@@ -114,7 +114,6 @@ export function CanvasBlock({
             width={600}
             height={300}
             priority
-            objectFit="contain"
           />
         </div>
       )}
