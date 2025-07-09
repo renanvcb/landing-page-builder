@@ -49,7 +49,7 @@ export function Canvas() {
       const defaultContentMap: Record<string, string> = {
         Heading: "Editable Heading",
         Paragraph: "Editable paragraph text...",
-        Image: "https://picsum.photos/300/150",
+        Image: "https://picsum.photos/800/300",
         Button: "Click Me",
       };
 
