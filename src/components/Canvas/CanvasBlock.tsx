@@ -69,7 +69,10 @@ export function CanvasBlock({
   return (
     <div
       ref={ref}
-      onClick={onSelect}
+      onClick={(e) => {
+        e.stopPropagation(); // Prevent click from bubbling up to the canvas
+        onSelect();
+      }}
       className={`${canvasStyles.blockWrapper} ${
         selected && canvasStyles.selected
       } ${isOver && canvasStyles.hoverTarget} ${

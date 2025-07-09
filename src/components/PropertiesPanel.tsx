@@ -6,12 +6,18 @@ type Props = {
   type: string;
   content: string;
   update: (value: string) => void;
+  onClose: () => void;
 };
 
-export function PropertiesPanel({ type, content, update }: Props) {
+export function PropertiesPanel({ type, content, update, onClose }: Props) {
   return (
     <div className={styles.panel}>
-      <h3 className={styles.panelTitle}>Properties</h3>
+      <div className={styles.panelHeader}>
+        <h3 className={styles.title}>Properties</h3>
+        <button className={styles.closeBtn} onClick={onClose}>
+          ×
+        </button>
+      </div>
 
       {(type === "Heading" || type === "Paragraph" || type === "Button") && (
         <>

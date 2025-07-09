@@ -95,6 +95,7 @@ export function Canvas() {
         ref={ref}
         className={canvasStyles.canvas}
         style={{ backgroundColor: isOver ? "#f0f8ff" : "white" }}
+        onClick={() => setSelectedId(null)}
       >
         {components.map((component, index) => (
           <CanvasBlock
@@ -115,6 +116,7 @@ export function Canvas() {
           type={selectedComponent.type}
           content={selectedComponent.content || ""}
           update={(val) => updateContent(val, selectedComponent.id)}
+          onClose={() => setSelectedId(null)}
         />
       )}
     </div>
