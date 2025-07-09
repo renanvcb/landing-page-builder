@@ -129,13 +129,14 @@ export function CanvasBlock({
             className={blockStyles.image}
             width={0}
             height={0}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            sizes="100vw"
             priority
+            unoptimized={false}
             style={{
-              width: "100%",
+              width: "auto",
               height: "auto",
               maxWidth: settings.maxWidth || "100%",
-              objectFit: "contain",
+              maxHeight: settings.maxHeight || "500px",
             }}
           />
         </div>

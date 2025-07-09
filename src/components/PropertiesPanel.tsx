@@ -172,38 +172,6 @@ export function PropertiesPanel({
               placeholder="Describe the image"
             />
 
-            <label htmlFor="image-width" className={styles.label}>
-              Width
-            </label>
-            <input
-              id="image-width"
-              type="number"
-              name="width"
-              value={settings.width || 500}
-              onChange={(e) =>
-                updateSettings({ width: Number(e.target.value) })
-              }
-              className={styles.input}
-              min="1"
-              max="2000"
-            />
-
-            <label htmlFor="image-height" className={styles.label}>
-              Height
-            </label>
-            <input
-              id="image-height"
-              type="number"
-              name="height"
-              value={settings.height || 300}
-              onChange={(e) =>
-                updateSettings({ height: Number(e.target.value) })
-              }
-              className={styles.input}
-              min="1"
-              max="2000"
-            />
-
             <label htmlFor="max-width" className={styles.label}>
               Max Width (CSS)
             </label>
@@ -213,6 +181,19 @@ export function PropertiesPanel({
               name="maxWidth"
               placeholder="Ex: 100%, 500px, 50vw"
               value={settings.maxWidth || "100%"}
+              onChange={handleChange}
+              className={styles.input}
+            />
+
+            <label htmlFor="max-height" className={styles.label}>
+              Max Height (CSS)
+            </label>
+            <input
+              id="max-height"
+              type="text"
+              name="maxHeight"
+              placeholder="Ex: 400px, 50vh, auto"
+              value={settings.maxHeight || "500px"}
               onChange={handleChange}
               className={styles.input}
             />

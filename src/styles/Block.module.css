@@ -28,7 +28,8 @@
 .imageContainer {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   max-width: 100%;
   overflow: hidden;
@@ -37,9 +38,7 @@
 .image {
   margin-bottom: 1rem;
   border-radius: 4px;
-  object-fit: contain;
-  max-width: 100%;
-  height: auto;
+  display: block;
 }
 
 .button {

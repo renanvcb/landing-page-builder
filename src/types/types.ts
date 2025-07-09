@@ -9,9 +9,8 @@ export type DroppedComponent = {
     textAlign?: "left" | "center" | "right";
     url?: string; // For Button
     btnBgColor?: string; // For Button
-    width?: number; // For Image
-    height?: number;
     alt?: string;
     maxWidth?: string; // For responsive Image
+    maxHeight?: string; // For responsive Image
   };
 };
