@@ -20,6 +20,8 @@ type Props = {
   moveBlock: (from: number, to: number) => void;
   updateContent: (value: string, id: string) => void;
   removeComponent: (id: string) => void;
+  selected: boolean;
+  onSelect: () => void;
 };
 
 export function CanvasBlock({
@@ -28,6 +30,8 @@ export function CanvasBlock({
   moveBlock,
   updateContent,
   removeComponent,
+  selected,
+  onSelect,
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -65,15 +69,15 @@ export function CanvasBlock({
   return (
     <div
       ref={ref}
+      onClick={onSelect}
       className={canvasStyles.blockWrapper}
       style={{
         opacity: isDragging ? 0.5 : 1,
-        backgroundColor: isOver ? "#f0f8ff" : "transparent",
-        transition: "background-color 0.2s ease",
-        display: "flex",
-        alignItems: "flex-start",
-        gap: "0.5rem",
-        cursor: "move",
+        backgroundColor: selected
+          ? "#e6f7ff" // highlight active block
+          : isOver
+          ? "#f0f8ff"
+          : "transparent",
       }}
     >
       <span className={canvasStyles.dragHandle}>⋮⋮</span>

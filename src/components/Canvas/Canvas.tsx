@@ -16,6 +16,8 @@ let idCounter = 0;
 
 export function Canvas() {
   const [components, setComponents] = useState<DroppedComponent[]>([]);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+
   const ref = useRef<HTMLDivElement>(null);
 
   // Loads from localStorage on start
@@ -97,6 +99,8 @@ export function Canvas() {
           moveBlock={moveBlock}
           updateContent={updateContent}
           removeComponent={removeComponent}
+          selected={selectedId === component.id}
+          onSelect={() => setSelectedId(component.id)}
         />
       ))}
     </div>
