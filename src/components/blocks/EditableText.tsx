@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "@/styles/Block.module.css";
 
 type EditableTextProps = {
@@ -18,6 +18,11 @@ export function EditableText({
 }: EditableTextProps) {
   const [editing, setEditing] = useState(false);
   const [value, setValue] = useState(content);
+
+  // Synchronizes when props.content changes
+  useEffect(() => {
+    setValue(content);
+  }, [content]);
 
   const handleBlur = () => {
     setEditing(false);
