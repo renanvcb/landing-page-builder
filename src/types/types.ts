@@ -7,8 +7,8 @@ export type DroppedComponent = {
     bgColor?: string;
     fontSize?: string;
     textAlign?: "left" | "center" | "right";
-    url?: string; // Para botões
-    width?: number; // Para imagem
+    url?: string; // For Button
+    width?: number; // For Image
     height?: number;
     alt?: string;
   };
