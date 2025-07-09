@@ -34,11 +34,17 @@ export function CanvasBlock({
 
   const { settings = {} } = component;
 
-  const dynamicStyle: React.CSSProperties = {
-    ...(settings.textColor ? { color: settings.textColor } : {}),
+  // Styles for the wrapper (background, layout)
+  const wrapperStyle: React.CSSProperties = {
     ...(settings.bgColor ? { backgroundColor: settings.bgColor } : {}),
+  };
+
+  // Styles for content elements (text, colors, alignment)
+  const contentStyle: React.CSSProperties = {
+    ...(settings.textColor ? { color: settings.textColor } : {}),
     ...(settings.fontSize ? { fontSize: settings.fontSize } : {}),
     ...(settings.textAlign ? { textAlign: settings.textAlign } : {}),
+    ...(settings.btnBgColor ? { backgroundColor: settings.btnBgColor } : {}),
   };
 
   // DRAG
@@ -84,6 +90,7 @@ export function CanvasBlock({
       } ${isOver && canvasStyles.hoverTarget} ${
         isDragging && canvasStyles.dragging
       }`}
+      style={wrapperStyle}
     >
       <span className={canvasStyles.dragHandle}>⋮⋮</span>
 
@@ -91,7 +98,7 @@ export function CanvasBlock({
         <EditableText
           as="h1"
           className={blockStyles.heading}
-          style={dynamicStyle}
+          style={contentStyle}
           {...commonProps}
         />
       )}
@@ -100,7 +107,7 @@ export function CanvasBlock({
         <EditableText
           as="p"
           className={blockStyles.paragraph}
-          style={dynamicStyle}
+          style={contentStyle}
           {...commonProps}
         />
       )}
@@ -109,7 +116,7 @@ export function CanvasBlock({
         <EditableText
           as="button"
           className={blockStyles.button}
-          style={dynamicStyle}
+          style={contentStyle}
           {...commonProps}
         />
       )}

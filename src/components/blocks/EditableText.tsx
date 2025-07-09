@@ -56,7 +56,7 @@ export function EditableText({
     <Element
       className={className}
       onClick={() => setEditing(true)}
-      style={{ cursor: "text" }}
+      style={{ cursor: "text", ...style }}
     >
       {value}
     </Element>

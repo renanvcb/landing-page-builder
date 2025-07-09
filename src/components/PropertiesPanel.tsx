@@ -26,7 +26,6 @@ export function PropertiesPanel({
     const { name, value } = e.target;
     updateSettings({ ...settings, [name]: value });
   };
-
   return (
     <div className={styles.panel}>
       <div className={styles.panelHeader}>
@@ -51,6 +50,15 @@ export function PropertiesPanel({
             type="color"
             name="textColor"
             value={settings.textColor || "#000000"}
+            onChange={handleChange}
+            className={styles.input}
+          />
+
+          <label className={styles.label}>Background Color</label>
+          <input
+            type="color"
+            name="bgColor"
+            value={settings.bgColor || "transparent"}
             onChange={handleChange}
             className={styles.input}
           />
@@ -84,6 +92,15 @@ export function PropertiesPanel({
                 type="text"
                 name="url"
                 value={settings.url || ""}
+                onChange={handleChange}
+                className={styles.input}
+              />
+
+              <label className={styles.label}>Button Background Color</label>
+              <input
+                type="color"
+                name="btnBgColor"
+                value={settings.btnBgColor || "#0070f3"}
                 onChange={handleChange}
                 className={styles.input}
               />

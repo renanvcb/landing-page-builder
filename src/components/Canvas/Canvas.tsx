@@ -86,18 +86,15 @@ export function Canvas() {
   };
 
   const updateSettings = (
-    newSettings: Partial<DroppedComponent["settings"]>,
-    id: string
+    id: string,
+    newSettings: Partial<DroppedComponent["settings"]>
   ) => {
     setComponents((prev) =>
       prev.map((component) =>
         component.id === id
           ? {
               ...component,
-              settings: {
-                ...component.settings,
-                ...newSettings,
-              },
+              settings: { ...component.settings, ...newSettings },
             }
           : component
       )
@@ -132,7 +129,9 @@ export function Canvas() {
           content={selectedComponent.content || ""}
           settings={selectedComponent.settings || {}}
           update={(val) => updateContent(val, selectedComponent.id)}
-          updateSettings={(s) => updateSettings(s, selectedComponent.id)}
+          updateSettings={(newSettings) =>
+            updateSettings(selectedComponent.id, newSettings)
+          }
           onClose={() => setSelectedId(null)}
         />
       )}
