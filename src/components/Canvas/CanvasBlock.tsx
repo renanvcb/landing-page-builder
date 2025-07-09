@@ -32,6 +32,15 @@ export function CanvasBlock({
 }: CanvasBlockProps) {
   const ref = useRef<HTMLDivElement>(null);
 
+  const { settings = {} } = component;
+
+  const dynamicStyle: React.CSSProperties = {
+    ...(settings.textColor ? { color: settings.textColor } : {}),
+    ...(settings.bgColor ? { backgroundColor: settings.bgColor } : {}),
+    ...(settings.fontSize ? { fontSize: settings.fontSize } : {}),
+    ...(settings.textAlign ? { textAlign: settings.textAlign } : {}),
+  };
+
   // DRAG
   const [{ isDragging }, drag] = useDrag({
     type: "canvas-block",
@@ -77,37 +86,44 @@ export function CanvasBlock({
       }`}
     >
       <span className={canvasStyles.dragHandle}>⋮⋮</span>
+
       {component.type === "Heading" && (
         <EditableText
           as="h1"
           className={blockStyles.heading}
+          style={dynamicStyle}
           {...commonProps}
         />
       )}
+
       {component.type === "Paragraph" && (
         <EditableText
           as="p"
           className={blockStyles.paragraph}
+          style={dynamicStyle}
           {...commonProps}
         />
       )}
+
       {component.type === "Button" && (
         <EditableText
           as="button"
           className={blockStyles.button}
+          style={dynamicStyle}
           {...commonProps}
         />
       )}
+
       {component.type === "Image" && (
         <div className={blockStyles.imageContainer}>
           <Image
             src={component.content || ""}
-            alt="User image"
+            alt={settings.alt || "User image"}
             className={blockStyles.image}
-            width={500}
-            height={300}
+            width={settings.width || 500}
+            height={settings.height || 300}
             priority
-            style={{ width: "100%", height: "auto" }} // Ensures responsive image
+            style={{ width: "100%", height: "auto" }}
           />
         </div>
       )}

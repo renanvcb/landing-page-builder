@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import styles from "@/styles/Block.module.css";
 
 type EditableTextProps = {
@@ -8,6 +8,7 @@ type EditableTextProps = {
   onChange: (value: string) => void;
   className?: string;
   as?: "h1" | "p" | "button";
+  style: CSSProperties;
 };
 
 export function EditableText({
@@ -15,6 +16,7 @@ export function EditableText({
   onChange,
   className = "",
   as = "p",
+  style = {},
 }: EditableTextProps) {
   const [editing, setEditing] = useState(false);
   const [value, setValue] = useState(content);
@@ -35,6 +37,7 @@ export function EditableText({
         autoFocus
         className={`${styles.editInput} ${className}`}
         value={value}
+        style={style}
         onChange={(e) => setValue(e.target.value)}
         onBlur={handleBlur}
         onKeyDown={(e) => {

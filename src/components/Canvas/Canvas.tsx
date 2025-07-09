@@ -85,6 +85,25 @@ export function Canvas() {
     });
   };
 
+  const updateSettings = (
+    newSettings: Partial<DroppedComponent["settings"]>,
+    id: string
+  ) => {
+    setComponents((prev) =>
+      prev.map((component) =>
+        component.id === id
+          ? {
+              ...component,
+              settings: {
+                ...component.settings,
+                ...newSettings,
+              },
+            }
+          : component
+      )
+    );
+  };
+
   return (
     <div className={canvasStyles.container}>
       <div
@@ -111,7 +130,9 @@ export function Canvas() {
         <PropertiesPanel
           type={selectedComponent.type}
           content={selectedComponent.content || ""}
+          settings={selectedComponent.settings || {}}
           update={(val) => updateContent(val, selectedComponent.id)}
+          updateSettings={(s) => updateSettings(s, selectedComponent.id)}
           onClose={() => setSelectedId(null)}
         />
       )}

@@ -1,20 +1,32 @@
 "use client";
 
 import styles from "@/styles/PropertiesPanel.module.css";
+import { DroppedComponent } from "@/types/types";
 
 type PanelProps = {
   type: string;
   content: string;
+  settings: DroppedComponent["settings"];
   update: (value: string) => void;
+  updateSettings: (newSettings: Partial<DroppedComponent["settings"]>) => void;
   onClose: () => void;
 };
 
 export function PropertiesPanel({
   type,
   content,
+  settings = {},
   update,
+  updateSettings,
   onClose,
 }: PanelProps) {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    updateSettings({ ...settings, [name]: value });
+  };
+
   return (
     <div className={styles.panel}>
       <div className={styles.panelHeader}>
@@ -33,16 +45,87 @@ export function PropertiesPanel({
             onChange={(e) => update(e.target.value)}
             className={styles.input}
           />
+
+          <label className={styles.label}>Text Color</label>
+          <input
+            type="color"
+            name="textColor"
+            value={settings.textColor || "#000000"}
+            onChange={handleChange}
+            className={styles.input}
+          />
+
+          <label className={styles.label}>Font Size</label>
+          <input
+            type="text"
+            name="fontSize"
+            placeholder="Ex: 16px, 1.5rem"
+            value={settings.fontSize || ""}
+            onChange={handleChange}
+            className={styles.input}
+          />
+
+          <label className={styles.label}>Text Align</label>
+          <select
+            name="textAlign"
+            value={settings.textAlign || "left"}
+            onChange={handleChange}
+            className={styles.input}
+          >
+            <option value="left">Esquerda</option>
+            <option value="center">Centro</option>
+            <option value="right">Direita</option>
+          </select>
+
+          {type === "Button" && (
+            <>
+              <label className={styles.label}>URL</label>
+              <input
+                type="text"
+                name="url"
+                value={settings.url || ""}
+                onChange={handleChange}
+                className={styles.input}
+              />
+            </>
+          )}
         </>
       )}
 
       {type === "Image" && (
         <>
-          <label className={styles.label}>Image (URL)</label>
+          <label className={styles.label}>Image URL</label>
           <input
             type="text"
             value={content}
             onChange={(e) => update(e.target.value)}
+            className={styles.input}
+          />
+
+          <label className={styles.label}>Alt Text</label>
+          <input
+            type="text"
+            name="alt"
+            value={settings.alt || ""}
+            onChange={handleChange}
+            className={styles.input}
+          />
+
+          <label className={styles.label}>Width</label>
+          <input
+            type="number"
+            name="width"
+            value={settings.width || 500}
+            onChange={(e) => updateSettings({ width: Number(e.target.value) })}
+            className={styles.input}
+          />
+
+          <label className={styles.label}>Height</label>
+          <input
+            type="number"
+            name="height"
+            value={settings.height || 300}
+            onChange={(e) => updateSettings({ height: Number(e.target.value) })}
             className={styles.input}
           />
         </>
