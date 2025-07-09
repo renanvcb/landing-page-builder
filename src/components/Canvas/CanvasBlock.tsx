@@ -100,20 +100,12 @@ export function CanvasBlock({
       )}
       {component.type === "Image" && (
         <div className={blockStyles.imageContainer}>
-          <input
-            type="text"
-            value={component.content}
-            onChange={(e) => updateContent(e.target.value, component.id)}
-            placeholder="Image URL"
-            className={blockStyles.editInput}
-          />
           <Image
             src={component.content || ""}
             alt="User image"
             className={blockStyles.image}
-            width={600}
+            width={500}
             height={300}
-            priority
           />
         </div>
       )}
