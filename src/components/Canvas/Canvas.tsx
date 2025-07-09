@@ -1,18 +1,15 @@
 "use client";
 
 import { useDrop } from "react-dnd";
-import { useRef, useState } from "react";
-import Image from "next/image";
-
-import { EditableText } from "../blocks/EditableText";
+import { useRef, useState, useEffect } from "react";
 
 import canvasStyles from "@/styles/Canvas.module.css";
-import blockStyles from "@/styles/Block.module.css";
+import { CanvasBlock } from "./CanvasBlock";
 
 type DroppedComponent = {
   id: string;
   type: string;
-  content?: string; // Optional content for blocks like Paragraph or Heading
+  content?: string;
 };
 
 let idCounter = 0;
@@ -20,6 +17,26 @@ let idCounter = 0;
 export function Canvas() {
   const [components, setComponents] = useState<DroppedComponent[]>([]);
   const ref = useRef<HTMLDivElement>(null);
+
+  // Loads from localStorage on start
+  useEffect(() => {
+    const stored = localStorage.getItem("pageComponents");
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored) as DroppedComponent[];
+        setComponents(parsed);
+        idCounter = parsed.length;
+      } catch (err) {
+        console.error("Erro ao carregar dados salvos:", err);
+      }
+    }
+  }, []);
+
+  // Saves to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("pageComponents", JSON.stringify(components));
+  }, [components]);
+
   const [{ isOver }, drop] = useDrop({
     accept: "block",
     drop: (item: { type: string }) => {
@@ -45,106 +62,43 @@ export function Canvas() {
 
   drop(ref);
 
+  const updateContent = (newContent: string, id: string) => {
+    setComponents((prev) =>
+      prev.map((component) =>
+        component.id === id ? { ...component, content: newContent } : component
+      )
+    );
+  };
+
+  const removeComponent = (id: string) => {
+    setComponents((prev) => prev.filter((component) => component.id !== id));
+  };
+
+  const moveBlock = (dragIndex: number, hoverIndex: number) => {
+    setComponents((prev) => {
+      const updated = [...prev];
+      const [removed] = updated.splice(dragIndex, 1);
+      updated.splice(hoverIndex, 0, removed);
+      return updated;
+    });
+  };
+
   return (
     <div
       ref={ref}
       className={canvasStyles.canvas}
       style={{ backgroundColor: isOver ? "#f0f8ff" : "white" }}
     >
-      {components.map((component) => {
-        const updateContent = (newContent: string) => {
-          setComponents((prev) =>
-            prev.map((c) =>
-              c.id === component.id ? { ...c, content: newContent } : c
-            )
-          );
-        };
-
-        const removeComponent = () => {
-          setComponents((prev) => prev.filter((c) => c.id !== component.id));
-        };
-
-        switch (component.type) {
-          case "Heading":
-            return (
-              <div key={component.id} className={canvasStyles.blockWrapper}>
-                <EditableText
-                  as="h1"
-                  content={component.content || ""}
-                  onChange={updateContent}
-                  className={blockStyles.heading}
-                />
-                <button
-                  onClick={removeComponent}
-                  className={canvasStyles.removeBtn}
-                >
-                  ×
-                </button>
-              </div>
-            );
-          case "Paragraph":
-            return (
-              <div key={component.id} className={canvasStyles.blockWrapper}>
-                <EditableText
-                  as="p"
-                  content={component.content || ""}
-                  onChange={updateContent}
-                  className={blockStyles.paragraph}
-                />
-                <button
-                  onClick={removeComponent}
-                  className={canvasStyles.removeBtn}
-                >
-                  ×
-                </button>
-              </div>
-            );
-          case "Button":
-            return (
-              <div key={component.id} className={canvasStyles.blockWrapper}>
-                <EditableText
-                  as="button"
-                  content={component.content || ""}
-                  onChange={updateContent}
-                  className={blockStyles.button}
-                />
-                <button
-                  onClick={removeComponent}
-                  className={canvasStyles.removeBtn}
-                >
-                  ×
-                </button>
-              </div>
-            );
-          case "Image":
-            return (
-              <div key={component.id} className={canvasStyles.blockWrapper}>
-                <input
-                  type="text"
-                  value={component.content}
-                  onChange={(e) => updateContent(e.target.value)}
-                  placeholder="Image URL"
-                  className={blockStyles.editInput}
-                />
-                <Image
-                  src={component.content || ""}
-                  alt="User image"
-                  className={blockStyles.image}
-                  width={500}
-                  height={300}
-                />
-                <button
-                  onClick={removeComponent}
-                  className={canvasStyles.removeBtn}
-                >
-                  ×
-                </button>
-              </div>
-            );
-          default:
-            return null;
-        }
-      })}
+      {components.map((component, index) => (
+        <CanvasBlock
+          key={component.id}
+          index={index}
+          component={component}
+          moveBlock={moveBlock}
+          updateContent={updateContent}
+          removeComponent={removeComponent}
+        />
+      ))}
     </div>
   );
 }
