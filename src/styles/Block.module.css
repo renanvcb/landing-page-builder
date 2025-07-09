@@ -16,11 +16,13 @@
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 1rem;
+  width: 100%;
 }
 
 .paragraph {
   font-size: 1rem;
   margin-bottom: 1rem;
+  width: 100%;
 }
 
 .imageContainer {
@@ -36,7 +38,8 @@
 }
 
 .button {
-  padding: 0.5rem 1rem;
+  padding: 1rem;
+  min-width: 200px;
   font-size: 1rem;
   background-color: #0070f3;
   color: white;
