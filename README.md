@@ -6,6 +6,12 @@ A visual drag-and-drop landing page builder built with **Next.js 15**, **React 1
 
 [https://github.com/renanvcb/landing-page-builder.git](https://github.com/renanvcb/landing-page-builder.git)
 
+## 🌐 Live Demo
+
+**Try it now:** [https://landing-page-builder-rho.vercel.app/](https://landing-page-builder-rho.vercel.app/)
+
+Experience the full functionality of the landing page builder directly in your browser. Drag components, edit content, and see the responsive design in action!
+
 ## ✨ Features
 
 - **Drag & Drop Interface**: Intuitive component placement using react-dnd
