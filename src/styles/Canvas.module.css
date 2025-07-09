@@ -1,6 +1,23 @@
 .container {
   display: flex;
   width: 100%;
+  flex-direction: row; /* padrão desktop */
+}
+
+/* Painel lateral de propriedades */
+.panel {
+  width: 300px;
+  padding: 1rem;
+  border-left: 1px solid #ddd;
+  background-color: #fafafa;
+  box-sizing: border-box;
+}
+
+/* Responsividade: painel vai para baixo no mobile */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column-reverse;
+  }
 }
 
 .canvas {

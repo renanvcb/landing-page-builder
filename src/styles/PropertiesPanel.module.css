@@ -24,3 +24,11 @@
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+@media (max-width: 768px) {
+  .panel {
+    width: 100%;
+    border-left: none;
+    border-bottom: 1px solid #ddd;
+  }
+}
