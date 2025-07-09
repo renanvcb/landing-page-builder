@@ -72,9 +72,9 @@ export function PropertiesPanel({
             onChange={handleChange}
             className={styles.input}
           >
-            <option value="left">Esquerda</option>
-            <option value="center">Centro</option>
-            <option value="right">Direita</option>
+            <option value="left">Left</option>
+            <option value="center">Center</option>
+            <option value="right">Right</option>
           </select>
 
           {type === "Button" && (
