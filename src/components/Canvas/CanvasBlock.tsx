@@ -11,7 +11,7 @@ import blockStyles from "@/styles/Block.module.css";
 
 import { DroppedComponent } from "@/types/types";
 
-type Props = {
+type CanvasBlockProps = {
   component: DroppedComponent;
   index: number;
   moveBlock: (from: number, to: number) => void;
@@ -29,7 +29,7 @@ export function CanvasBlock({
   removeComponent,
   selected,
   onSelect,
-}: Props) {
+}: CanvasBlockProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   // DRAG
@@ -44,7 +44,7 @@ export function CanvasBlock({
   // DROP
   const [{ isOver }, drop] = useDrop({
     accept: "canvas-block",
-    hover(item: Props) {
+    hover(item: CanvasBlockProps) {
       if (!ref.current || item.index === index) return;
       moveBlock(item.index, index);
       item.index = index;
