@@ -8,11 +8,7 @@ import canvasStyles from "@/styles/Canvas.module.css";
 import { CanvasBlock } from "./CanvasBlock";
 import { PropertiesPanel } from "../PropertiesPanel";
 
-type DroppedComponent = {
-  id: string;
-  type: string;
-  content?: string;
-};
+import { DroppedComponent } from "@/types/types";
 
 let idCounter = 0;
 

@@ -5,14 +5,11 @@ import { useDrag, useDrop } from "react-dnd";
 import Image from "next/image";
 
 import { EditableText } from "../blocks/EditableText";
+
 import canvasStyles from "@/styles/Canvas.module.css";
 import blockStyles from "@/styles/Block.module.css";
 
-type DroppedComponent = {
-  id: string;
-  type: string;
-  content?: string;
-};
+import { DroppedComponent } from "@/types/types";
 
 type Props = {
   component: DroppedComponent;
