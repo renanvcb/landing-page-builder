@@ -145,6 +145,16 @@ export function PropertiesPanel({
             onChange={(e) => updateSettings({ height: Number(e.target.value) })}
             className={styles.input}
           />
+
+          <label className={styles.label}>Max Width (CSS)</label>
+          <input
+            type="text"
+            name="maxWidth"
+            placeholder="Ex: 100%, 500px, 50vw"
+            value={settings.maxWidth || "100%"}
+            onChange={handleChange}
+            className={styles.input}
+          />
         </>
       )}
     </div>

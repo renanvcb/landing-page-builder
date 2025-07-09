@@ -12,5 +12,6 @@ export type DroppedComponent = {
     width?: number; // For Image
     height?: number;
     alt?: string;
+    maxWidth?: string; // For responsive Image
   };
 };
